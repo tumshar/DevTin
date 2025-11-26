@@ -4,25 +4,15 @@ const app= express();
 
 
 
-app.get("/user/:userID/:name/:password",(req,res)=>{
-    console.log(req.params);
-    res.send("userID: "+req.params.userID+" name: "+req.params.name+" password: "+req.params.password);
+app.use("/users",(req,res,next)=>{
+    console.log("1st response")
+  
+  next();
+},
+(req,res)=>{
+    console.log("2nd response")
+    res.send("users page 2");
 });
-
-app.post("/user",(req,res)=>{
-console.log("save data to the database");
-res.send("data saved to the database");
-});
-
-app.delete("/user",(req,res)=>{
-    console.log("delete data from the database");
-    res.send("data deleted from the database");
-});
-
-app.use("/",(req,res)=>{
-    res.send("SERVER RUNNING");
-});
-
 
  
 
